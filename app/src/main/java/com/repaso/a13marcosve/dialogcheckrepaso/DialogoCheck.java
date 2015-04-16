@@ -46,38 +46,35 @@ public class DialogoCheck extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private final ArrayList<String> seleccionados = new ArrayList<String>();
 
     protected Dialog onCreateDialog(int id) {
-        final TextView texto=(TextView)findViewById(R.id.txtvTexto);
+        final TextView texto = (TextView) findViewById(R.id.txtvTexto);
         AlertDialog.Builder venta = new AlertDialog.Builder(this);
         venta.setTitle(getString(R.string.tituloDialog));
         Resources res = getResources();
         final String[] vehiculos = res.getStringArray(R.array.vehiculos);
+        final boolean[] seleccion = new boolean[]{false, true, false, true, false, false, false};
         // Non incluír mensaxe dentro de este tipo de diálogo!!!
-        venta.setMultiChoiceItems(vehiculos, new boolean[]{false, true, false, true, false, false, false}, new DialogInterface.OnMultiChoiceClickListener() {
+        venta.setMultiChoiceItems(R.array.vehiculos, seleccion, new DialogInterface.OnMultiChoiceClickListener() {
             public void onClick(DialogInterface dialog, int opcion, boolean isChecked) {
                 // Evento que ocorre cando o usuario selecciona unha opción
                 if (isChecked)
-                    seleccionados.add(vehiculos[opcion]);
-                else {
+                    seleccion[opcion] = true;
 
-                    for (String vehiculo : seleccionados) {
-
-                        if (vehiculo.equalsIgnoreCase(vehiculos[opcion])) {
-                            seleccionados.remove(vehiculo);
-                        }
-                    }
-                }
+                else
+                    seleccion[opcion] = false;
             }
         });
         venta.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int boton) {
                 texto.setText("");
-                for (String vehiculo : seleccionados) {
-                    texto.append(vehiculo+"\n");
+                int i = 0;
+                for (boolean slect : seleccion) {
+                    if (slect) {
+                        texto.append(vehiculos[i] + "\n");
+                    }
+                    i++;
                 }
-                seleccionados.clear();
             }
         });
         venta.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
