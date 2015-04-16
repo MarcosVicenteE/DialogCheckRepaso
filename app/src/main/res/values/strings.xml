@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DialogCheckRepaso</string>
+    <string name="Dialog">DialogCheck</string>
+    <string name="action_settings">Settings</string>
+    <string name="txtSeleccionado">Aqui aparecera o que selecciones</string>
+    <string name="tituloDialog">Selecciona multiples vehiculos</string>
+    <string-array name="vehiculos">
+        <item>Coche</item>
+        <item>Moto</item>
+        <item>Bici</item>
+        <item>Metro</item>
+        <item>Tren</item>
+        <item>Autobús</item>
+        <item>Andando</item>
+    </string-array>
+
+</resources>
